@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Material{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<header>
+    <h1>Add Material for SQF {{ sqf_type }}</h1>
+</header>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'material_list' sqf_type=sqf_type %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+    <a href="{% url 'home' %}" class="btn btn-link">Home</a>
+</div>
+{% endblock %}

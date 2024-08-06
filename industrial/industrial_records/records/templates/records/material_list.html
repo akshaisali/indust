@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Material List{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<div class="container">
+    <h1>Material List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>SQF Type</th>
+                <th>Specification</th>
+                <th>Quantity</th>
+                <th>Make</th>
+                <th>Purpose</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for material in materials %}
+            <tr>
+                <td>{{ material.sqf_type }}</td>
+                <td>{{ material.specification }}</td>
+                <td>{{ material.quantity }}</td>
+                <td>{{ material.make }}</td>
+                <td>{{ material.purpose }}</td>
+                <td>{{ material.price }}</td>
+                <td>{{ material.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'home' %}" class=""btn btn-custom"">Back to Home</a>
+</div>
+{% endblock %}

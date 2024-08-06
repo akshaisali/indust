@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}SQF 100{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<div class="container">
+    <h1>SQF 100</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h2>Existing Data</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Specification</th>
+                <th>Quantity</th>
+                <th>Make</th>
+                <th>Purpose</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.specification }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.make }}</td>
+                <td>{{ item.purpose }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'home' %}" class="btn btn-link">Back to Home</a>
+</div>
+{% endblock %}
